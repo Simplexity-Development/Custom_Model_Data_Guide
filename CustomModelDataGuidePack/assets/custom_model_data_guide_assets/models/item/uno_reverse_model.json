@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "custom_model_data_guide_assets:item/uno_reverse_texture"
+  }
+}

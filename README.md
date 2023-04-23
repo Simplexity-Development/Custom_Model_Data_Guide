@@ -9,13 +9,22 @@ To create a custom model data, you first need to take the original model file an
 <br>Within this folder, create the initial folders `models`, and `textures`, and an `item` folder within both of those.
 
 ## Base Model
-Open the original model file you're basing off of (in this demo we're using an iron nugget) and add the following code:
+Open the original model file you're basing off of and add the following code:
 
 ```json
+,
 "overrides" : [
-{ "predicate": { "custom_model_data": 1 }, "model": "custom_model_data_guide_assets:item/purpur_item" }
+{ "predicate": { "custom_model_data": <data number> }, "model": "<namespace>:<path>" }
 ]
 ```
+<br>For this example, this looks like:
+```json
+,
+"overrides": [
+    { "predicate": { "custom_model_data": 1 }, "model": "custom_model_data_guide_assets:item/uno_reverse_model" }
+  ]
+```
+
 This code tells the game which model file to look for. The model file should be in the `assets/<declared namespace>/models/<declared path>` folder. 
 <br>For example, if you have a model in `models -> weapons -> swords -> basic -> iron -> noob_sword.json`, it would look like `"model": "your_namespace:weapons/swords/basic/iron/noob_sword"`. 
 <br>You should also name your custom model data with a unique prefix number that makes sense to you to avoid conflicts with other custom model data packs.
@@ -23,8 +32,25 @@ This code tells the game which model file to look for. The model file should be 
 ## New Model
 Then, create a model file in the folder you declared in the previous step. 
 <br>This is the json file that tells the game where to place and render the textures. In this file, you are telling the game which texture file(s) to look for. 
-<br>The texture file(s) should be in the `assets/<declared namespace>/textures/<declared path>` folder. You can use assets that are already in the game or your own textures.
+<br>You can create your own folder for this, and this will likely make it easier to find things if you are making a large pack. 
+<br>If making your own folder, you will put it under the `assets` directory. For this demonstration I will be creating a directory called `custom_model_data_guide_assets` to put the models and textures into
+<br>
+<br>This will be the model that you exported from blockbench/another software if you used one - or if you're just using a hand-made texture, you can make your own. I will be making my own for this demonstration - it looks like this:
+
+```json
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "custom_model_data_guide_assets:item/uno_reverse_texture"
+  }
+}
+```
+This must be named and in the location that was declared in the override from earlier. So for this demonstration, this file must go into `custom_model_data_guide_assets/models/item` and then be named `uno_reverse_model.json`
+
+## Textures
+The texture file(s) should be in the `assets/<declared namespace>/textures/<declared path>` folder. You can use assets that are already in the game or your own textures.
 <br>If you export a blockbench model file, you might need to manually adjust the texture file assignments in the case that it was not getting the files from the same place that you are getting them in the pack.
+<br>For this demonstration, the file must be in the `custom_model_data_guide_assets/textures/item` folder, and be named `uno_reverse_texture`
 
 ### Final
 You need an mcmeta file or your pack won't work. [misode.github.io](https://misode.github.io/pack-mcmeta/) has a generator, as well as many other very helpful resources for data/resource packs. 

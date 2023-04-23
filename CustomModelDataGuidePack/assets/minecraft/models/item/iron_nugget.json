@@ -4,6 +4,6 @@
     "layer0": "minecraft:item/iron_nugget"
   },
   "overrides": [
-    { "predicate": { "custom_model_data": 1 }, "model": "custom_model_data_guide_assets:item/purpur_item" }
+    { "predicate": { "custom_model_data": 1 }, "model": "custom_model_data_guide_assets:item/uno_reverse_model" }
   ]
 }
