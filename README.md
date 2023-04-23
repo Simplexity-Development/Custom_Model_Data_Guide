@@ -9,7 +9,7 @@ To create a custom model data, you first need to take the original model file an
 <br>Within this folder, create the initial folders `models`, and `textures`, and an `item` folder within both of those.
 
 ## Base Model
-Open the original model file you're basing off of and add the following code:
+Open the original model file you're basing off of and add the following code after the textures declaration:
 
 ```json
 ,
