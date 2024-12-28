@@ -9,20 +9,117 @@ To create a custom model data, you first need to take the original model file an
 <br>Within this folder, create the initial folders `models`, and `textures`, and an `item` folder within both of those.
 
 ## Base Model
-Open the original model file you're basing off of and add the following code after the textures declaration:
+Open the original model file you're basing off of. Original models usually look like this:
 
 ```json
-,
-"overrides" : [
-{ "predicate": { "custom_model_data": <data number> }, "model": "<namespace>:<path>" }
-]
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "minecraft:item/iron_nugget"
+  }
+}
 ```
-<br>For this example, this looks like:
+
+After 1.21.4, custom model data has gotten a lot more flexible, but also requires more things to be added. 
+
+So first, change the `"type": "minecraft:model"` to be ```"type": "minecraft:select"```, and remove the next line. It should look like this now:
+'`minecraft:select`' is the setup that allows us to use strings to declare the name of the item, if you want to use numbers that's a different setup, which I don't want to teach here because strings are a lot more straightforward.
+
 ```json
-,
-"overrides": [
-    { "predicate": { "custom_model_data": 1 }, "model": "custom_model_data_guide_assets:item/uno_reverse_model" }
-  ]
+{
+  "model": {
+    "type": "minecraft:select",
+  }
+}
+```
+
+Now, add on the next line - ```"property": "minecraft:custom_model_data",```
+
+```json
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "minecraft:custom_model_data",
+  }
+}
+```
+
+then you add the 'fallback' texture, so basically the texture this used to point to. In this case, iron nugget. Add `"fallback": {}` and then basically the original contents of the file into the brackets
+
+```json
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "minecraft:custom_model_data",
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/iron_nugget"
+    }
+  }
+}
+```
+
+Now for the actual declaration of the custom data, we need to add '`"cases":[{}]`' for the different cases that will be shown. i.e. the different models that will be shown.
+
+```json
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "minecraft:custom_model_data",
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/iron_nugget"
+    },
+    "cases": [
+      {
+      }
+    ]
+  }
+}
+```
+
+Now inside the `{}` we're gonna add `"when": <name>` - this will be the name of the custom data, it'll be what's used in the command.
+
+```json
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "minecraft:custom_model_data",
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/iron_nugget"
+    },
+    "cases": [
+      {
+        "when": "uno_reverse"
+      }
+    ]
+  }
+}
+```
+
+Then we add the model information for where the model is. So it should look like this, after all that.
+
+```json
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "minecraft:custom_model_data",
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/iron_nugget"
+    },
+    "cases": [
+      {
+        "when" : "uno_reverse",
+        "model" : {
+          "type": "minecraft:model",
+          "model": "custom_model_data_guide_assets:item/uno_reverse_model"
+        }
+      }
+    ]
+  }
+}
 ```
 
 This code tells the game which model file to look for. The model file should be in the `assets/<declared namespace>/models/<declared path>` folder. 
