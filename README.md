@@ -120,7 +120,7 @@ They must be named the way they have been referenced in the model file (outside 
 So for this, I must have placed a texture image called `uno_reverse.png` into the folder
 `assets/item_model_guide/textures/item/`
 
-If you do not need to change textures based on specific fancy contexts, you can skip to [Final Touches](#Final Touches)
+If you do not need to change textures based on specific fancy contexts, you can skip to [Final Touches](#final-touches)
 
 # Custom Model Data
 
