@@ -1,0 +1,27 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "minecraft:custom_model_data",
+    "cases": [
+      {
+        "when": "uno_reverse",
+        "model": {
+          "type": "minecraft:condition",
+          "property": "minecraft:selected",
+          "on_true": {
+            "type": "minecraft:model",
+            "model": "item_model_guide:item/uno_reverse"
+          },
+		  "on_false": {
+            "type": "minecraft:model",
+            "model": "minecraft:item/iron_nugget"
+          }
+        }
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/iron_nugget"
+    }
+  }
+}
