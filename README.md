@@ -189,13 +189,13 @@ shown. i.e. the different models that will be shown.
   "model": {
     "type": "minecraft:select",
     "property": "minecraft:custom_model_data",
+    "cases": [
+      {}
+    ],
     "fallback": {
       "type": "minecraft:model",
       "model": "minecraft:item/iron_nugget"
-    },
-    "cases": [
-      {}
-    ]
+    }
   }
 }  
 ```  
@@ -209,15 +209,15 @@ things' - and prevents the original game items from being broken.
   "model": {
     "type": "minecraft:select",
     "property": "minecraft:custom_model_data",
-    "fallback": {
-      "type": "minecraft:model",
-      "model": "minecraft:item/iron_nugget"
-    },
     "cases": [
       {
         "when": "uno_reverse"
       }
-    ]
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/iron_nugget"
+    }
   }
 }  
 ```  
@@ -242,7 +242,11 @@ going to choose `"selected"` - which just means 'it is highlighted in the hotbar
           "property": "minecraft:selected"
         }
       }
-    ]
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/iron_nugget"
+    }
   }
 }
 ```  
@@ -267,7 +271,11 @@ file to look for. The model file should be in the `assets/<namespace>/models/ite
           }
         }
       }
-    ]
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/iron_nugget"
+    }
   }
 }
 ```
@@ -288,14 +296,80 @@ I am also going to need an `"on_false"` section, which in this example will just
           "on_true": {
             "type": "minecraft:model",
             "model": "item_model_guide:item/uno_reverse"
-          },
+            },
           "on_false": {
             "type": "minecraft:model",
             "model": "minecraft:item/iron_nugget"
           }
         }
       }
-    ]
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/iron_nugget"
+    }
+  }
+}
+```
+
+### How to use `minecraft:composite`
+
+The property `minecraft:composite` allows you to layer multiple models on top of each other. 
+If we wanted to do this in our example, we would set up a list named `models` under the `composite` property:
+
+```json
+{
+  "type": "minecraft:composite",
+  "models": []
+}
+```
+We put the two models into that list. I'm going to use red stained glass pane as the second layer because it's easy to see overlap with the texture we're using.
+
+```json
+{
+  "type": "minecraft:composite",
+  "models": [
+    {
+      "type": "minecraft:model",
+      "model": "item_model_guide:item/uno_reverse"
+    },
+    {
+      "type": "minecraft:model",
+      "model": "minecraft:item/red_stained_glass_pane"
+    }
+  ]
+}
+```
+
+Then we can put this into the item file like this
+
+```json
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "minecraft:custom_model_data",
+    "cases": [
+      {
+        "when": "uno_reverse_layered",
+        "model": {
+          "type": "minecraft:composite",
+          "models": [
+            {
+              "type": "minecraft:model",
+              "model": "item_model_guide:item/uno_reverse"
+            },
+            {
+              "type": "minecraft:model",
+              "model": "minecraft:item/red_stained_glass_pane"
+            }
+          ]
+        }
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/iron_nugget"
+    }
   }
 }
 ```
@@ -407,3 +481,8 @@ Making a recipe with custom model data is very similar:
 - [Minecraft Wiki - Data Components](https://minecraft.wiki/w/Data_component_format)
 - [McAssetExtractor](https://github.com/rmheuer/McAssetExtractor)
 - [JSON Validator](https://jsonlint.com/)
+
+
+## Thanks to:
+- @AJman14 - 'How to use' section suggestion
+- @zbirow - 'minecraft:composite' section suggestion

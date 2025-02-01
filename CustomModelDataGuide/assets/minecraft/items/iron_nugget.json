@@ -17,6 +17,22 @@
             "model": "minecraft:item/iron_nugget"
           }
         }
+      },
+      {
+        "when": "uno_reverse_layered",
+        "model": {
+          "type": "minecraft:composite",
+          "models": [
+            {
+              "type": "minecraft:model",
+              "model": "item_model_guide:item/uno_reverse"
+            },
+            {
+              "type": "minecraft:model",
+              "model": "minecraft:item/red_stained_glass_pane"
+            }
+          ]
+        }
       }
     ],
     "fallback": {
