@@ -76,7 +76,11 @@ held and placed in relation to the character, that the model will be rendered in
 
 - `"minecraft:item/generated"` - most items in the game (sticks, potatoes, whatever)
 - `"minecraft:item/handheld"` - items that are held by the player and used i.e. tools, weapons
+- `"minecraft:item/handheld_rod"` - items held like a rod (fishing rods, carrot on a stick, warped fungus on a stick)
+- `"minecraft:item/handheld_mace"` - heavy handheld weapons with custom positioning (mace)
 - `"minecraft:item/template_bed"` - beds
+- `"minecraft:item/template_chest"` - chest-based items (regular chests, ender chests, copper chests)
+- `"minecraft:item/template_skull"` - skull and mob head items
   If I missed any item parent models please let me know. There are many block parent models but I will not be covering
   those as there is currently no natively-supported way to add custom blocks into the game.
 
@@ -486,3 +490,4 @@ Making a recipe with custom model data is very similar:
 ## Thanks to:
 - @AJman14 - 'How to use' section suggestion
 - @zbirow - 'minecraft:composite' section suggestion
+- @bluewingtitan - item model parent suggestions
